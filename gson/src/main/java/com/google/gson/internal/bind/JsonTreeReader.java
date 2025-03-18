@@ -37,6 +37,7 @@ import java.util.Map;
  * @author Jesse Wilson
  */
 public final class JsonTreeReader extends JsonReader {
+  private  static  final int STACK_SIZE = 32;
   private static final Reader UNREADABLE_READER =
       new Reader() {
         @Override
@@ -52,7 +53,7 @@ public final class JsonTreeReader extends JsonReader {
   private static final Object SENTINEL_CLOSED = new Object();
 
   /** The nesting stack. Using a manual array rather than an ArrayList saves 20%. */
-  private Object[] stack = new Object[32];
+  private Object[] stack = new Object[STACK_SIZE];
 
   /**
    * The used size of {@link #stack}; the value at {@code stackSize - 1} is the value last placed on

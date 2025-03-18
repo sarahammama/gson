@@ -224,6 +224,7 @@ public class JsonWriter implements Closeable, Flushable {
 
   private boolean serializeNulls = true;
 
+  private static  final int NUMBER_ASCII_CHARACTERE = 128;
   /**
    * Creates a new instance that writes a JSON-encoded stream to {@code out}. For best performance,
    * ensure {@link Writer} is buffered; wrapping in {@link java.io.BufferedWriter BufferedWriter} if
@@ -749,7 +750,7 @@ public class JsonWriter implements Closeable, Flushable {
     for (int i = 0; i < length; i++) {
       char c = value.charAt(i);
       String replacement;
-      if (c < 128) {
+      if (c < NUMBER_ASCII_CHARACTERE) {
         replacement = replacements[c];
         if (replacement == null) {
           continue;

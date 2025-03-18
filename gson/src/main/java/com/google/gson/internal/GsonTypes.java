@@ -45,6 +45,7 @@ import java.util.Properties;
 @SuppressWarnings("MemberName") // legacy class name
 public final class GsonTypes {
   static final Type[] EMPTY_TYPE_ARRAY = new Type[] {};
+  private  static final int STRINGBUILDER_CAPACITY = 30;
 
   private GsonTypes() {
     throw new UnsupportedOperationException();
@@ -574,7 +575,7 @@ public final class GsonTypes {
         return typeToString(rawType);
       }
 
-      StringBuilder stringBuilder = new StringBuilder(30 * (length + 1));
+      StringBuilder stringBuilder = new StringBuilder(STRINGBUILDER_CAPACITY * (length + 1));
       stringBuilder
           .append(typeToString(rawType))
           .append("<")
